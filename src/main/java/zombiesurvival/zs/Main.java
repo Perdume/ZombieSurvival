@@ -19,6 +19,7 @@ public final class Main extends JavaPlugin {
     public WorldLoader wl;
     public WorldEditor we;
     public ScoreHelper sc;
+    public TeamManager teammanager;
 
     @Override
     public void onEnable() {
@@ -33,6 +34,7 @@ public final class Main extends JavaPlugin {
         wl = new WorldLoader();
         we = new WorldEditor();
         sc = new ScoreHelper(this);
+        teammanager = new TeamManager(this);
 
     }
 

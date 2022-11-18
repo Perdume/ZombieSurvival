@@ -27,9 +27,6 @@ public class GameManager{
     public GameManager(Main plugin){
         bs = plugin;
     }
-    public void StartGame(){
-
-    }
     public Game getGame(SubArena area){
         return games.get(area);
     }
