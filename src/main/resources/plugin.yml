@@ -1,0 +1,4 @@
+name: Zs
+version: '${project.version}'
+main: zombiesurvival.zs.Main
+api-version: 1.19
