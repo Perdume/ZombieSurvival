@@ -14,12 +14,14 @@ public class SubArena {
 
     private String name;
     private Location spawnLocation;
+    private Arena FAN;
 
     private List<User> players = new ArrayList<>();
 
-    public SubArena(String nam, Location spawnLocation) {
+    public SubArena(String nam, Location spawnLocation, Arena SelArena) {
         this.name = nam;
         this.spawnLocation = spawnLocation;
+        FAN = SelArena;
     }
 
     public void join(Player p) {
@@ -46,6 +48,9 @@ public class SubArena {
         return spawnLocation;
     }
 
+    public Arena getArena(){
+        return FAN;
+    }
 
     public void setSpawnLocation(Location spawnLocation) {
         this.spawnLocation = spawnLocation;

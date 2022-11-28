@@ -13,6 +13,20 @@ public class ArenaManager{
     private ArrayList<String> areaname = new ArrayList<>();
     private Main bs = Main.getPlugin(Main.class);
 
+    public void arealoader(){
+        try {
+            if (bs.worldManager.getConfig().get("Worldlist", areaname) == null){
+                return;
+            }
+            areaname = (ArrayList<String>) bs.worldManager.getConfig().get("Worldlist", areaname);
+            for (String s : areaname) {
+                arenas.put(s, new Arena(s, (String) bs.worldManager.getConfig().get("World." + s + ".filename")));
+            }
+        }
+        catch(Exception e){
+            return;
+        }
+    }
     public void registerArena(String name, String filename) {
         bs.worldManager.getConfig().set("World."+name+".filename", filename);
         arenas.put(name, new Arena(name, filename));

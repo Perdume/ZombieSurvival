@@ -7,6 +7,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import util.Cuboid.Tool;
 import util.VisitToPlay;
 import util.WorldManage;
 import zombiesurvival.zs.Main;
@@ -86,6 +88,11 @@ public class admin implements CommandExecutor {
                 return true;
             }
         }
+        if (args[0].equalsIgnoreCase("flist")){
+            File dir = new File(bs.getDataFolder().getAbsolutePath() + "\\WorldList");
+            File[] dirList = dir.listFiles();
+            sender.sendMessage();
+        }
         if(args[0].equalsIgnoreCase("list")) {
             if (bs.arenaManager.getArenas().isEmpty()){
                 sender.sendMessage("Empty");
@@ -155,6 +162,18 @@ public class admin implements CommandExecutor {
             for(Game g: bs.gamemanager.getGames()){
                 bs.gamemanager.GameEnd(g.getArena());
             }
+        }
+        if (args[0].equalsIgnoreCase("EditTool")){
+            ItemStack it = Tool.getTool();
+            Player p = (Player) sender;
+            p.getInventory().addItem(it);
+        }
+        if (args[0].equalsIgnoreCase("SetPos")){
+            Player p = (Player) sender;
+            VisitToPlay vtp = new VisitToPlay();
+            vtp.setPos1(p, bs.wlm.getWandLocs(p).getLoc1());
+            vtp.setPos2(p, bs.wlm.getWandLocs(p).getLoc2());
+            p.sendMessage("COMPLETE");
         }
         sender.sendMessage(PREFIX + ChatColor.RED + "Unknown subcommand.");
         return true;

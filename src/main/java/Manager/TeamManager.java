@@ -16,8 +16,33 @@ public class TeamManager {
     public TeamManager(Main pl){
         bs = pl;
     }
-    public void CreateTeam(Player p){
+    public Team CreateTeam(Player p){
         Team nt = new Team(p.getUniqueId());
         TeamList.add(nt);
+        return nt;
+    }
+    public Team GetTeam(Player p) {
+        for (Team t : TeamList) {
+            if (t.getLeader() == p) {
+                return t;
+            }
+        }
+        return null;
+    }
+    public Team GetTeamMem(Player p) {
+        for (Team t : TeamList) {
+            if (t.getPlayers().contains(p)) {
+                return t;
+            }
+        }
+        return null;
+    }
+    public Boolean isPlayerInTeam(Player p) {
+        if (GetTeamMem(p) != null){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

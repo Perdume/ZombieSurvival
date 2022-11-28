@@ -55,7 +55,7 @@ public class GameManager{
             int RandomInt = (int) (Math.random() * (Areas.size() + 1) - 1);
             Arena SelArena = bs.arenaManager.getArena(Areas.get(RandomInt));
             File fi = SelArena.getWorldLoader();
-            String MixedName = "Bowshot--PLAY--" + Randomname();
+            String MixedName = "ZS--PLAY--" + Randomname();
             Path toFolder = Paths.get(Bukkit.getWorldContainer().getAbsolutePath() + "\\" + MixedName);
             WorldManage wrma = new WorldManage();
             wrma.copyWorld(fi, toFolder.toFile());
@@ -65,7 +65,7 @@ public class GameManager{
             wrm1.createWorld();
             VisitToPlay vtp = new VisitToPlay();
             Location Loc = vtp.getLocation(fi.getName(), Bukkit.getWorld(MixedName));
-            SubArena NewSubArena = bs.subarenaManager.registerArena(MixedName, Loc);
+            SubArena NewSubArena = bs.subarenaManager.registerArena(MixedName, Loc, SelArena);
             return NewSubArena;
         }
         catch(IOException e){
@@ -110,6 +110,15 @@ public class GameManager{
             }
         }
         return false;
+    }
+    public SubArena PlayingArena(Player p){
+        if (gamelist == null) return null;
+        for (Game g: gamelist){
+            if (g.isPlayerisPlaying(p)){
+                return g.getArena();
+            }
+        }
+        return null;
     }
     private Boolean ismatch(File f){
         for (Game g: bs.gamemanager.getGames()){

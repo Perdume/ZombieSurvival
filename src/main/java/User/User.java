@@ -3,6 +3,7 @@ package User;
 
 import Arena.SubArena;
 import Game.Game;
+import User.Ability.Ab1.AbList;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import zombiesurvival.zs.Main;
@@ -12,6 +13,12 @@ import java.util.UUID;
 public class User {
     private UUID user;
     private boolean Spect = false;
+    private AbList ab;
+    private int coin = 0;
+    private int armorlevel = 0;
+    private int swordlevel = 0;
+    private int armorenchant = 0;
+    private int swordenchant = 0;
     private Main bs = Main.getPlugin(Main.class);
     public User(UUID uid){
         this.user = uid;
@@ -28,6 +35,42 @@ public class User {
             }
         }
         return null;
+    }
+    public AbList getAbility(){
+        return ab;
+    }
+    public int getArmorLevel(){
+        return armorlevel;
+    }
+    public void setArmorLevel(int l){
+        armorlevel = l;
+    }
+    public int getSwordLevel(){
+        return swordlevel;
+    }
+    public void setSwordLevel(int l){
+        swordlevel = l;
+    }
+    public int getArmorEnchantLevel(){
+        return armorenchant;
+    }
+    public void setArmorEnchantLevel(int l){
+        armorenchant = l;
+    }
+    public int getSwordEnchantLevel(){
+        return swordenchant;
+    }
+    public void setSwordEnchantLevel(int l){
+        swordenchant = l;
+    }
+    public int getCoin(){
+        return coin;
+    }
+    public void setCoin(int co){
+        coin = co;
+    }
+    public void setAbility(AbList ab){
+        this.ab =ab;
     }
     public Game getGame(){
         for(Game game: bs.gamemanager.getGames()){

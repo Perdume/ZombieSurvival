@@ -1,6 +1,7 @@
 package Manager;
 
 
+import Arena.Arena;
 import Arena.SubArena;
 import org.bukkit.Location;
 import zombiesurvival.zs.Main;
@@ -16,8 +17,8 @@ public class SubArenaManager {
     private ArrayList<String> areaname = new ArrayList<>();
     private Main bs = Main.getPlugin(Main.class);
 
-    public SubArena registerArena(String name, Location spawnLocation) {
-        SubArena newSub = new SubArena(name, spawnLocation);
+    public SubArena registerArena(String name, Location spawnLocation, Arena SelArena) {
+        SubArena newSub = new SubArena(name, spawnLocation, SelArena);
         areaname.add(name);
         arenas.put(name, newSub);
         return newSub;

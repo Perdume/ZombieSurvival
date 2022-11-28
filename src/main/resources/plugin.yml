@@ -2,3 +2,11 @@ name: Zs
 version: '${project.version}'
 main: zombiesurvival.zs.Main
 api-version: 1.19
+
+commands:
+  zs:
+    usage: "/zs"
+    description: zs
+  zsadmin:
+    usage: "?"
+    description: zs admin
