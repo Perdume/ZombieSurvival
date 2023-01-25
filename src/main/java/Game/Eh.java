@@ -3,9 +3,6 @@ package Game;
 import Arena.SubArena;
 import Shop.ShopGUI;
 import User.User;
-import net.minecraft.world.entity.EntityCreature;
-import net.minecraft.world.entity.EntityInsentient;
-import net.minecraft.world.level.pathfinder.PathEntity;
 import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -85,9 +82,11 @@ public class Eh implements Listener {
                 if (e.getDamager() instanceof Player) {
                     //PLAYER -> ENTITY;
                     Entity en = e.getEntity();
-                    if (en.isDead()) {
+                    LivingEntity LivEn = (LivingEntity) en;
+                    if (LivEn.getHealth() < e.getDamage() ) {
                         Player p = (Player) e.getDamager();
                         bs.usermanager.getUser(p).setCoin(bs.usermanager.getUser(p).getCoin() + 20);
+                        p.sendMessage(ChatColor.GREEN + "Coin + 20");
                     }
                 }
                 else{

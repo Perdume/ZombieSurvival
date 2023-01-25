@@ -2,6 +2,10 @@ package Game;
 
 import Arena.SubArena;
 import User.User;
+import io.lumine.mythic.api.mobs.MythicMob;
+import io.lumine.mythic.bukkit.BukkitAdapter;
+import io.lumine.mythic.bukkit.MythicBukkit;
+import io.lumine.mythic.core.mobs.ActiveMob;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -79,7 +83,7 @@ public class Game {
     }
 
     private SpawnMob getRandomMonsterConcep(){
-        ArrayList<SpawnMob> CpList = new ArrayList<>(Arrays.asList(SpawnMob.Plain, SpawnMob.Dessert, SpawnMob.Nether, SpawnMob.Nether));
+        ArrayList<SpawnMob> CpList = new ArrayList<>(Arrays.asList(SpawnMob.Plain, SpawnMob.Dessert));
         int Pll = CpList.size();
         int Plll = (int) (Pll * Math.random());
         return CpList.get(Plll);
@@ -126,12 +130,16 @@ public class Game {
             }
         }.runTaskTimer(bs, 0, 20L);
     }
-    private void RandomSpawn(EntityType Et){
+    private void RandomSpawn(String Et){
         Location loc = getRandomLocation();
         if (loc == null){
             broadcast("LOCATION FIND ERROR!");
         }
-        Area.getSpawnLocation().getWorld().spawnEntity(loc, Et);
+        MythicMob mob = MythicBukkit.inst().getMobManager().getMythicMob(Et).orElse(null);
+        Location spawnLocation = loc;
+        if(mob != null){
+            mob.spawn(BukkitAdapter.adapt(spawnLocation),1);
+        }
     }
     private Location getRandomLocation(){
         VisitToPlay vtp = new VisitToPlay();

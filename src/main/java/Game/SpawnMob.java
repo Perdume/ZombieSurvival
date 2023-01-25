@@ -1,33 +1,37 @@
 package Game;
 
-import org.bukkit.entity.EntityType;
+import io.lumine.mythic.api.mobs.MythicMob;
+import io.lumine.mythic.bukkit.BukkitAdapter;
+import io.lumine.mythic.bukkit.MythicBukkit;
+import io.lumine.mythic.core.mobs.ActiveMob;
+
+import javax.swing.text.html.parser.Entity;
+import javax.xml.stream.Location;
 
 public enum SpawnMob {
-    Plain(EntityType.ZOMBIE, EntityType.SKELETON, EntityType.SPIDER, EntityType.CREEPER),
-    Dessert(EntityType.HUSK, EntityType.STRAY, EntityType.SPIDER, EntityType.CREEPER),
-    Nether(EntityType.WITHER_SKELETON, EntityType.PIGLIN_BRUTE, EntityType.SPIDER, EntityType.CREEPER),
-    Hunter(EntityType.VINDICATOR, EntityType.PILLAGER, EntityType.SPIDER, EntityType.CREEPER);
+    Plain("Zo1L1", "Zo1L1", "Zo1L1", "Zo1L1"),
+    Dessert("Zo1L1", "Zo1L1", "Zo1L1", "Zo1L1");
 
-    private EntityType zombie;
-    private EntityType skeleton;
-    private EntityType spider;
-    private EntityType creeper;
-    SpawnMob(EntityType zombie, EntityType skeleton, EntityType spider, EntityType creeper) {
+    private String zombie;
+    private String skeleton;
+    private String spider;
+    private String creeper;
+    SpawnMob(String zombie, String skeleton, String spider, String creeper) {
         this.zombie = zombie;
         this.skeleton = skeleton;
         this.spider = spider;
         this.creeper = creeper;
     }
-    public EntityType getZombie(){
+    public String getZombie(){
         return zombie;
     }
-    public EntityType getSkeleton(){
+    public String getSkeleton(){
         return skeleton;
     }
-    public EntityType getSpider(){
+    public String getSpider(){
         return spider;
     }
-    public EntityType getCreeper(){
+    public String getCreeper(){
         return creeper;
     }
 }
